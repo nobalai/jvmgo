@@ -71,7 +71,9 @@ func (self *ClassFile) read(reader *ClassReader) {
 
 func (self *ClassFile) readAndCheckMagic(reader *ClassReader) {
 	self.magic := reader.readUint32()
-	if self.magic != 0xCAFEBABE
+	if self.magic != 0xCAFEBABE {
+		panic("java.lang.ClassFormatError: magic: " + self.magic)
+	}
 }
 
 func (self *ClassFile) readAndCheckVersion(reader *ClassReader) {
@@ -84,9 +86,8 @@ func (self *ClassFile) readAndCheckVersion(reader *ClassReader) {
 		    if self.minorVersion == 0 {
 		    	return
 		    }
-		panic("java.alng.unsupportudClas")
 	}
-	panic("java.log.Unsu")
+	panic("java.lang.UnsupportedClassVersionError!")
 }
 
 func (self *ClassFile) MinorVersion() uint16 {
