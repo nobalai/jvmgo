@@ -1,12 +1,11 @@
 package classfile
 
-import (
-	"fmt"
-	"unicode/utf16"
-)
-
 type ConstantUtf8Info struct {
 	str string
+}
+
+func decodeMUTF8(bytes []byte) string {
+	return string(bytes)
 }
 
 func (self *ConstantUtf8Info) readInfo(reader *ClassReader) {

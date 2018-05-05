@@ -48,7 +48,7 @@ func Parse(classData []byte) (cf *ClassFile, err error) {
 				err = fmt.Errorf("%v", r)
 			}
 		}
-	} ()
+	}()
 	
 	cr := &ClassReader{classData}
 	cf = &ClassFile{}
@@ -70,9 +70,9 @@ func (self *ClassFile) read(reader *ClassReader) {
 }
 
 func (self *ClassFile) readAndCheckMagic(reader *ClassReader) {
-	self.magic := reader.readUint32()
+	self.magic = reader.readUint32()
 	if self.magic != 0xCAFEBABE {
-		panic("java.lang.ClassFormatError: magic: " + self.magic)
+		panic("java.lang.ClassFormatError: magic!")
 	}
 }
 
@@ -126,11 +126,9 @@ func (self *ClassFile) SuperClassName() string {
 }
 
 func (self *ClassFile) InterfaceNames() []string {
-	interfaceName := make([]string, len(self.interfaces))
+	interfaceNames := make([]string, len(self.interfaces))
 	for i, cpIndex := range self.interfaces {
-		interfaceName[i] = self.constantPool.getClassName(cpIndex)
+		interfaceNames[i] = self.constantPool.getClassName(cpIndex)
 	}
 	return interfaceNames
-}
-
 }

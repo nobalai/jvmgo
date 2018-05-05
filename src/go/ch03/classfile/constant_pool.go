@@ -1,8 +1,8 @@
 package classfile
 
-type ConstantPool []ConstatntInfo
+type ConstantPool []ConstantInfo
 
-func readConstantPool(reader *ClassReader) ConstatntPool {
+func readConstantPool(reader *ClassReader) ConstantPool {
 	cpCount := int(reader.readUint16())
 	cp := make([]ConstantInfo, cpCount)
 	
