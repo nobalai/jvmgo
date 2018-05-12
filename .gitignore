@@ -18,3 +18,7 @@
 .settings/
 pkg/
 bin/
+
+# goland
+.idea/
+*.iml
