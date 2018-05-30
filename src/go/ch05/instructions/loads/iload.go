@@ -5,11 +5,6 @@ import (
 	"go/ch05/rtda"
 )
 
-func _iload(frame *rtda.Frame, index uint) {
-	val := frame.LocalVars().GetInt(index)
-	frame.OperandStack().PushInt(val)
-}
-
 // Load int from local variable
 type ILOAD struct { base.Index8Instruction }
 
@@ -39,4 +34,9 @@ type ILOAD_3 struct { base.NoOperandsInstruction }
 
 func (self *ILOAD_3) Execute(frame *rtda.Frame) {
 	_iload(frame, 3)
+}
+
+func _iload(frame *rtda.Frame, index uint) {
+	val := frame.LocalVars().GetInt(index)
+	frame.OperandStack().PushInt(val)
 }
